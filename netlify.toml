@@ -2,6 +2,6 @@
   package = "@netlify/plugin-nextjs"
 
 [build]
-  base = "veiligbellen"
+  base = "Veilig-bellen"
   command = "npm run build"
   publish = ".next"
