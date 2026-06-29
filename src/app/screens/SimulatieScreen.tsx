@@ -16,7 +16,7 @@ export default function SimulatieScreen() {
     warnedRef.current = false;
 
     intervalRef.current = setInterval(() => {
-      setCallSeconds(prev => {
+    setCallSeconds((prev: number) => {
         const next = prev + 1;
         const limit = warningMinutes * 60;
         if (next >= limit && !warnedRef.current) {
