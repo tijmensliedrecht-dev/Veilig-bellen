@@ -11,10 +11,10 @@ const riskFactors = [
 ];
 
 const timeline = [
-  { time: '09:30', label: 'Gesprek gestart',         sub: 'Onbekend nummer gebeld',         color: 'var(--pb)'   },
-  { time: '09:33', label: 'Waarschuwing gegenereerd', sub: '3 minuten limiet bereikt',       color: 'var(--warn)' },
-  { time: '09:33', label: 'Familie geïnformeerd',     sub: 'Lisa & Mark ontvangen melding',  color: 'var(--red)'  },
-  { time: '09:35', label: 'Bericht verzonden',        sub: 'Lisa stuurt: "Is alles goed?"',  color: '#8b5cf6'     },
+  { time: '09:30', label: 'Gesprek gestart',          sub: 'Onbekend nummer gebeld',        color: 'var(--pb)'   },
+  { time: '09:33', label: 'Waarschuwing gegenereerd',  sub: '3 minuten limiet bereikt',      color: 'var(--warn)' },
+  { time: '09:33', label: 'Familie geïnformeerd',      sub: 'Lisa en Mark ontvangen melding',color: 'var(--red)'  },
+  { time: '09:35', label: 'Bericht verzonden',         sub: 'Lisa stuurt: Is alles goed?',   color: '#8b5cf6'     },
 ];
 
 export default function DetailsScreen() {
@@ -44,7 +44,7 @@ export default function DetailsScreen() {
                   borderRadius: 7, display: 'flex', alignItems: 'center',
                   justifyContent: 'center', fontSize: 13, flexShrink: 0,
                 }}>
-                  {f.risk ? '⚠' : '✓'}
+                  {f.risk ? '!' : 'v'}
                 </div>
                 <span style={{ fontSize: 14, color: 'var(--dark)' }}>{f.text}</span>
               </div>
@@ -52,4 +52,39 @@ export default function DetailsScreen() {
           </div>
         </Card>
         <Card>
-          <div style={{ fontSize: 14,
+          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--dark)', marginBottom: 16 }}>
+            Volledige tijdlijn
+          </div>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              {timeline.map((t, i) => (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div className="timeline-dot" style={{ background: t.color }} />
+                  {i < timeline.length - 1 && <div className="timeline-line" />}
+                </div>
+              ))}
+            </div>
+            <div style={{ flex: 1 }}>
+              {timeline.map((t, i) => (
+                <div key={i} style={{ marginBottom: i < timeline.length - 1 ? 22 : 0 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: t.color }}>
+                    {t.time} — {t.label}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--gray)' }}>{t.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+        <div style={{ background: '#f0fdf4', borderRadius: 16, padding: 16, border: '1.5px solid #bbf7d0' }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: '#166534', marginBottom: 4 }}>
+            Gezin is op de hoogte
+          </div>
+          <div style={{ fontSize: 13, color: '#15803d' }}>
+            Het systeem heeft correct gereageerd op alle signalen.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
