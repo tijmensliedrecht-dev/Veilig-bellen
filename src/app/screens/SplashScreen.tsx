@@ -7,8 +7,7 @@ export default function SplashScreen() {
   const { go } = useApp();
 
   useEffect(() => {
-    const t = setTimeout(() => go('welcome'), 2000);
-    return () => clearTimeout(t);
+    go('welcome');
   }, [go]);
 
   return (
@@ -41,17 +40,8 @@ export default function SplashScreen() {
       <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', letterSpacing: -0.8, marginBottom: 8 }}>
         VeiligBellen
       </div>
-      <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', textAlign: 'center', marginBottom: 56 }}>
+      <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', textAlign: 'center' }}>
         Extra bescherming tegen telefonische oplichting
-      </div>
-      <div style={{ display: 'flex', gap: 6 }}>
-        {[0, 1, 2].map(i => (
-          <div key={i} className="pulse" style={{
-            width: 8, height: 8, borderRadius: '50%',
-            background: i === 1 ? '#fff' : 'rgba(255,255,255,0.35)',
-            animationDelay: `${i * 0.2}s`,
-          }} />
-        ))}
       </div>
     </div>
   );
