@@ -43,22 +43,28 @@ export default function SimulatieScreen() {
 
   return (
     <div style={{ minHeight: '100%', background: '#1a1a2e', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ height: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', fontSize: 14, fontWeight: 600, color: '#fff' }}>
+      <div style={{ height: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', color: '#fff' }}>
         <span style={{ fontSize: 15, fontWeight: 700 }}>9:41</span>
-        <span>●●●● 5G 🔋</span>
+        <span>5G</span>
       </div>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>
           Inkomend gesprek
         </div>
-        <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 4 }}>Onbekend nummer</div>
-        <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.4)', marginBottom: 36 }}>+31 20 123 4567</div>
+        <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 4 }}>
+          Onbekend nummer
+        </div>
+        <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.4)', marginBottom: 36 }}>
+          +31 20 123 4567
+        </div>
         <div style={{ position: 'relative', width: 180, height: 180, marginBottom: 32 }}>
           <svg width="180" height="180" viewBox="0 0 180 180">
             <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="7" />
-            <circle cx="90" cy="90" r="70" fill="none"
+            <circle
+              cx="90" cy="90" r="70" fill="none"
               stroke={isWarning ? 'var(--red)' : 'var(--pb)'}
-              strokeWidth="7" strokeLinecap="round"
+              strokeWidth="7"
+              strokeLinecap="round"
               strokeDasharray={CIRCUMFERENCE}
               strokeDashoffset={offset}
               transform="rotate(-90 90 90)"
@@ -77,27 +83,27 @@ export default function SimulatieScreen() {
         <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 16, padding: '16px 24px', textAlign: 'center', marginBottom: 36, width: '100%' }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 4 }}>Status</div>
           <div style={{ fontSize: 16, fontWeight: 600, color: '#fff' }}>
-            {isWarning ? '🟠 Mogelijk verdacht gesprek' : '🟢 Gesprek loopt'}
+            {isWarning ? 'Mogelijk verdacht gesprek' : 'Gesprek loopt'}
           </div>
           {isWarning && (
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>
-              Familie wordt gewaarschuwd…
+              Familie wordt gewaarschuwd
             </div>
           )}
         </div>
         <div style={{ display: 'flex', gap: 20, marginBottom: 28 }}>
-          {[
-            { emoji: '🔇', bg: 'rgba(255,255,255,0.1)', onClick: undefined },
-            { emoji: '📵', bg: 'var(--red)', onClick: () => go('dashboard') },
-            { emoji: '🔊', bg: 'rgba(255,255,255,0.1)', onClick: undefined },
-          ].map((b, i) => (
-            <div key={i} onClick={b.onClick} style={{ width: 68, height: 68, background: b.bg, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, cursor: b.onClick ? 'pointer' : 'default' }}>
-              {b.emoji}
-            </div>
-          ))}
+          <div style={{ width: 68, height: 68, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, color: '#fff' }}>
+            Mute
+          </div>
+          <div onClick={() => go('dashboard')} style={{ width: 68, height: 68, background: 'var(--red)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, color: '#fff', cursor: 'pointer' }}>
+            Stop
+          </div>
+          <div style={{ width: 68, height: 68, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, color: '#fff' }}>
+            Luid
+          </div>
         </div>
         <button onClick={() => go('dashboard')} style={{ background: 'transparent', border: '1.5px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.4)', padding: '10px 24px', borderRadius: 20, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>
-          ← Terug naar dashboard
+          Terug naar dashboard
         </button>
       </div>
     </div>
