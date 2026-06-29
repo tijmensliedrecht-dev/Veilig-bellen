@@ -15,17 +15,16 @@ export default function SimulatieScreen() {
     setHasWarning(false);
     warnedRef.current = false;
 
+    let count = 0;
     intervalRef.current = setInterval(() => {
-    setCallSeconds((prev: number) => {
-        const next = prev + 1;
-        const limit = warningMinutes * 60;
-        if (next >= limit && !warnedRef.current) {
-          warnedRef.current = true;
-          setHasWarning(true);
-          setTimeout(() => go('notificatie'), 2000);
-        }
-        return next;
-      });
+      count += 1;
+      const limit = warningMinutes * 60;
+      setCallSeconds(count);
+      if (count >= limit && !warnedRef.current) {
+        warnedRef.current = true;
+        setHasWarning(true);
+        setTimeout(() => go('notificatie'), 2000);
+      }
     }, 1000);
 
     return () => {
@@ -66,7 +65,7 @@ export default function SimulatieScreen() {
             />
           </svg>
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ fontSize: 40, fontWeight: 800, color: '#fff', fontVariantNumeric: 'tabular-nums', letterSpacing: -1 }}>
+            <div style={{ fontSize: 40, fontWeight: 800, color: '#fff', letterSpacing: -1 }}>
               {timeStr}
             </div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
